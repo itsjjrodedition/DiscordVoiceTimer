@@ -1,0 +1,24 @@
+{
+  "name": "discordvoicechanneltimer-master",
+  "version": "1.0.0",
+  "description": "Welcome to the **Discord Voice Timer Bot** github! Below you can read more about the bot, like what it does, and how to set it up!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node deploy-commands.js && node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J-dotjs/DiscordVoiceChannelTimer-master.git"
+  },
+  "author": "J-dotjs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J-dotjs/DiscordVoiceChannelTimer-master/issues"
+  },
+  "homepage": "https://github.com/J-dotjs/DiscordVoiceChannelTimer-master#readme",
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3"
+  }
+}
