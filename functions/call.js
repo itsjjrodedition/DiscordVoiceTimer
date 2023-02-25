@@ -41,6 +41,7 @@ async function execute(client){
                     .setTimestamp()
                 callmsg.edit({ embeds: [callEndEmbed] })
                 justEnded = false;
+                justCalled = true;
             }
 
 		}
