@@ -35,7 +35,7 @@ async function execute(client){
                     .setTitle("Call ended")
                     .setDescription(`Call ended at ${new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")} on ${new Date().toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")}`)
                     .addFields(
-                        { name: 'Call lasted', value: `${new Date(Date.now() - callmsg.createdTimestamp).toISOString().substr(11, 8)}`, inline: true },
+                        { name: 'Call lasted', value: `${hours}:${minutes}:${seconds}`, inline: true },
                     )
                     .setFooter({ text:  "hh:mm:ss" })
                     .setTimestamp()
