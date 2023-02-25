@@ -1,6 +1,8 @@
 const { EmbedBuilder, ChannelType, ActivityType } = require('discord.js');
 require('dotenv').config();
 
+const wait = require('util').promisify(setTimeout);
+
 async function execute(client){
 
     var call = false;
@@ -8,6 +10,7 @@ async function execute(client){
     var justEnded = false;
     var callTime;
     var callDate;
+    var callStartTime;
     var callmsg;
     var timeOccurred = 0;
 
@@ -48,6 +51,7 @@ async function execute(client){
         if(call === true && justCalled === true){
             callDate = new Date().toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             callTime = new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+            callStartTime = Date.now();
 
             callStartEmbed = new EmbedBuilder()
                 .setTitle("Call started")
@@ -57,9 +61,11 @@ async function execute(client){
             callmsg = await client.channels.cache.get(process.env.callchannel).send({ embeds: [callStartEmbed] });
             justCalled = false
             timeOccurred = 10;
+
+            wait(5000);
         } else if(call === true && justCalled === false){
         
-            var totalSeconds = (Date.now() - callmsg.createdTimestamp) / 1000;
+            var totalSeconds = (Date.now() - callStartTime) / 1000;
             if(totalSeconds < 0) totalSeconds = 0;
             var totalMinutes = totalSeconds / 60;
             var totalHours = totalMinutes / 60;
