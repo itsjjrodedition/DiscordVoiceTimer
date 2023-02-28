@@ -31,6 +31,7 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 1. Goto [Releases](https://github.com/J-dotjs/DiscordVoiceTimer/releases) then download the version of your choice
 2. Head to the folder you downloaded the bot to
 3. Open the the [sample.env](/sample.env) file
+4. Fill out the fields, all of them are required.
 
 ## Commands
 
