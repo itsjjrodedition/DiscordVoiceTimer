@@ -80,6 +80,8 @@ async function execute(client){
         } else if(call === true && justCalled === false){
 
             callStartTime = file.get("callStartTime");
+            callDate = file.get("callDate");
+            callTime = file.get("callTime");
             
             var totalSeconds = (Date.now() - callStartTime) / 1000;
             if(totalSeconds < 0) totalSeconds = 0;
