@@ -32,14 +32,11 @@ async function execute(client){
 		for(const[id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
 		if(count > 0){
 			call = true;
-		} else {
-			call = false;
-		}
-		if(call === true){
             justEnded = true;
 		} else {
+			call = false;
 			client.user.setPresence({ activities: [{ name: ``, type: ActivityType.Custom }], status: 'dnd', });
-            justCalled = false;
+            justCalled = true;
             if(justEnded === true){
 
                 file.empty();
@@ -62,6 +59,8 @@ async function execute(client){
             callDate = new Date().toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             callTime = new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             callStartTime = Date.now();
+
+            console.log(callStartTime)
 
             file.set("callStartTime", callStartTime)
             file.set("callDate", callDate)
@@ -92,7 +91,7 @@ async function execute(client){
             minutes = Math.floor(totalMinutes % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
             seconds = Math.floor(totalSeconds % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 
-            client.user.setPresence({ activities: [{ name: `${hours}:${minutes}:${seconds}`, type: ActivityType.Listening }], status: 'online', });
+            client.user.setPresence({ activities: [{ name: `${hours}:${minutes}:${seconds}`, type: ActivityType.Playing }], status: 'online', });
             const callOngoingEmbed = new EmbedBuilder()
                 .setTitle("Call ongoing")
                 .setColor(0x00FF00)
