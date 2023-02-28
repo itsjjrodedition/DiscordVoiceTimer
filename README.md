@@ -31,8 +31,9 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 1. Goto [Releases](https://github.com/J-dotjs/DiscordVoiceTimer/releases) then download the version of your choice
 2. Head to the folder you downloaded the bot to
 3. Open the the [sample.env](/sample.env) file
-4. Fill out the fields, all of them are required.
+4. Fill out the fields, the *token* field is the token you copied from step 9 in the initial setup **REQUIRED**, the *auditlogchannel* is the ID of the channel you want call audits to be sent to, callchannel field is the ID of the channel where you want the details of the active call to go, and the *client_id* field is the application ID you copied from step 6 during the initial setup
+5. Run the [start.bat](/start.bat) file to start your bot!
 
 ## Commands
 
-Slash (/) commands coming soon
+Slash commands are supported. Simply type / in the chat box and click on the bots profile picture and see all the commands you can use!
