@@ -35,7 +35,7 @@ async function execute(client){
             justEnded = true;
 		} else {
 			call = false;
-			client.user.setPresence({ activities: [{ name: ` `, type: ActivityType.Playing }], status: 'dnd', });
+			client.user.setPresence({ activities: [{ name: ` `, type: ActivityType.Custom }], status: 'dnd', });
             justCalled = true;
             if(justEnded === true){
 
