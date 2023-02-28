@@ -3,6 +3,12 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 require('dotenv').config()
 
+const editJsonFile = require("edit-json-file");
+
+var file = editJsonFile(`${process.cwd()}/call.json`, {
+    autosave: true
+});
+
 const config = {
 	token: process.env.token,
 	logchannel: process.env.auditlogchannel,
@@ -24,6 +30,8 @@ for (const file of commandFiles) {
 }
 
 client.once(Events.ClientReady, async () => {
+	file.empty();
+
 	console.log(`Logged in as ${client.user.tag}`);
 
 	rcall.execute(client);
