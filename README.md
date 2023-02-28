@@ -28,7 +28,7 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 
 ## Downloading and starting
 
-**WIP**
+1. Goto [Releases](https://github.com/J-dotjs/DiscordVoiceTimer/releases) then download the version of your choice
 
 ## Commands
 
