@@ -61,7 +61,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	else if (oldState.channelId === null && newState.channelId !== null) {
 		// User joined a voice channel
 		console.log(newState.member.user.username + " joined " + newState.channel.name)
-		client.channels.cache.get(config.logchannel).send(`<@${newState.member.user.id}> joined <#${newState.channel.id}>)
+		client.channels.cache.get(config.logchannel).send(`${newState.member.user.username} joined <#${newState.channel.id}>`)
 
 	} else if (newState.channelId === null) {
 		// User left a voice channel
