@@ -66,13 +66,13 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	} else if (newState.channelId === null) {
 		// User left a voice channel
 		console.log(newState.member.user.username + " left " + oldState.channel.name)
-		client.channels.cache.get(config.logchannel).send(newState.member.user.username + " left " + oldState.channel.name)
+		client.channels.cache.get(config.logchannel).send(`${newState.member.user.username} left <#${oldState.channel.id}>`)
 	} else {
 		// User switched voice channels
 		console.log(newState.member.user.username + " switched from " + oldState.channel.name + " to " + newState.channel.name)
-		client.channels.cache.get(config.logchannel).send(newState.member.user.username + " switched from " + oldState.channel.name + " to " + newState.channel.name)
+		client.channels.cache.get(config.logchannel).send(`${newState.member.user.username} switched from <#${oldState.channel.id} to <#${newState.channel.id>`)
 	}
-	if( oldState.streaming === true && newState.streaming === false){
+	if( oldState.streaming === true && newState.streaming === false && oldState.channelId != null){
 		// User stopped streaming
 		console.log(newState.member.user.username + " stopped streaming")
 		client.channels.cache.get(config.logchannel).send(newState.member.user.username + " stopped streaming")
