@@ -70,7 +70,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	} else {
 		// User switched voice channels
 		console.log(newState.member.user.username + " switched from " + oldState.channel.name + " to " + newState.channel.name)
-		client.channels.cache.get(config.logchannel).send(`${newState.member.user.username} switched from <#${oldState.channel.id} to <#${newState.channel.id>`)
+		client.channels.cache.get(config.logchannel).send(`${newState.member.user.username} switched from <#${oldState.channel.id} to <#${newState.channel.id}>`)
 	}
 	if( oldState.streaming === true && newState.streaming === false && oldState.channelId != null){
 		// User stopped streaming
