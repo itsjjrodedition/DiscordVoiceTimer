@@ -53,33 +53,39 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
+
+	var username = newState.member.user.username;
+	var nickname = newState.member.nickname;
+
+	var message = ``;
+
+	if(nickname != null){
+		message = `${nickname}(${username})`;
+	} else {
+		message = `${username}`;
+	}
+
 	if(!config.logchannel) return;
 	if (oldState.channelId === newState.channelId){
 		// Still in the same channel
-		console.log(newState.member.user.username + " is still in " + newState.channel.name)
 	}
 	else if (oldState.channelId === null && newState.channelId !== null) {
 		// User joined a voice channel
-		console.log(newState.member.user.username + " joined " + newState.channel.name)
-		client.channels.cache.get(config.logchannel).send(`${newState.member.nickname}(${newState.member.user.username}) joined <#${newState.channel.id}>`)
+		client.channels.cache.get(config.logchannel).send(`${message} joined <#${newState.channel.id}>`)
 
 	} else if (newState.channelId === null) {
 		// User left a voice channel
-		console.log(newState.member.user.username + " left " + oldState.channel.name)
-		client.channels.cache.get(config.logchannel).send(`${newState.member.nickname}(${newState.member.user.username}) left <#${oldState.channel.id}>`)
+		client.channels.cache.get(config.logchannel).send(`${message} left <#${oldState.channel.id}>`)
 	} else {
 		// User switched voice channels
-		console.log(newState.member.user.username + " switched from " + oldState.channel.name + " to " + newState.channel.name)
-		client.channels.cache.get(config.logchannel).send(`${newState.member.nickname}(${newState.member.user.username}) switched from <#${oldState.channel.id}> to <#${newState.channel.id}>`)
+		client.channels.cache.get(config.logchannel).send(`${message} switched from <#${oldState.channel.id}> to <#${newState.channel.id}>`)
 	}
 	if( oldState.streaming === true && newState.streaming === false && oldState.channelId != null){
 		// User stopped streaming
-		console.log(newState.member.user.username + " stopped streaming")
-		client.channels.cache.get(config.logchannel).send(`${newState.member.nickname}(${newState.member.user.username}) stopped streaming`)
+		client.channels.cache.get(config.logchannel).send(`${message} stopped streaming`)
 	} else if( oldState.streaming === false && newState.streaming === true){
 		// User started streaming
-		console.log(newState.member.user.username + " started streaming")
-		client.channels.cache.get(config.logchannel).send(`${newState.member.nickname}(${newState.member.user.username}) started streaming`)
+		client.channels.cache.get(config.logchannel).send(`${message} started streaming`)
 	} 
 
 });
