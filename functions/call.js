@@ -60,8 +60,6 @@ async function execute(client){
             callTime = new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             callStartTime = Date.now();
 
-            console.log(callStartTime)
-
             file.set("callStartTime", callStartTime)
             file.set("callDate", callDate)
             file.set("callTime", callTime)

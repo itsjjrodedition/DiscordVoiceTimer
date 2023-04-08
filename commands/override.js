@@ -157,7 +157,9 @@ module.exports = {
                 minute = "00";
             }
 
-            interaction.reply({content: `The call's time has been overriden to \`${month} ${day} ${year} ${hour}:${minute}\``, ephemeral: true});
+            var date = new Date(`${month} ${day} ${year} ${hour}:${minute}`)
+
+            interaction.reply({content: `The call's time has been overriden to \`${date}\``, ephemeral: true});
             file.set("callStartTime", Date.parse(`${month} ${day} ${year} ${hour}:${minute}`));
             file.set("callDate", new Date(`${month} ${day} ${year} ${hour}:${minute}`).toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
             file.set("callTime", new Date(`${month} ${day} ${year} ${hour}:${minute}`).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
