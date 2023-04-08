@@ -24,6 +24,18 @@ module.exports = {
         )
         .addStringOption(option =>
             option
+            .setName('messageid')
+            .setDescription('The embed message ID of the previous call')
+            .setRequired(false)
+        )
+        .addStringOption(option =>
+            option
+            .setName('channelid')
+            .setDescription('The ID of the channel containing the message (if not in the same channel)')
+            .setRequired(false)
+        )
+        .addStringOption(option =>
+            option
             .setName('month')
             .setDescription('The month of the call')
             .setRequired(false)
@@ -102,19 +114,21 @@ module.exports = {
             .setName('minute')
             .setDescription('The minute of the call (0-59)')
             .setRequired(false)
-        )
-        
-        .addStringOption(option =>
-            option
-            .setName('messageid')
-            .setDescription('The embed message ID of the previous call')
-            .setRequired(false)
         ),
     async execute(interaction, client) {
         if(interaction.options.getString('manual') == 'no') {
+            const channelid = interaction.options.getString('channelid');
             const messageid = interaction.options.getString('messageid');
+
+            var message;
+            var channel;
             if(messageid != null) {
-                const message = await interaction.channel.messages.fetch(messageid);
+                if(channelid != null) {
+                    channel = await client.channels.fetch(channelid);
+                    message = await channel.messages.fetch(messageid);
+                } else {
+                    message = await interaction.channel.messages.fetch(messageid);
+                }
                 file.set("callStartTime", Date.parse(message.createdAt));
                 file.set("callDate", new Date(message.createdAt).toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
                 file.set("callTime", new Date(message.createdAt).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
