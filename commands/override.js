@@ -158,6 +158,12 @@ module.exports = {
             }
 
             var date = new Date(`${month} ${day} ${year} ${hour}:${minute}`)
+            
+            var now = new Date()
+            
+            if(date > now){
+                console.log('invalid')
+            }
 
             interaction.reply({content: `The call's time has been overriden to \`${date}\``, ephemeral: true});
             file.set("callStartTime", Date.parse(`${month} ${day} ${year} ${hour}:${minute}`));
