@@ -1,6 +1,8 @@
 const { ContextMenuCommandBuilder, ApplicationCommandType } = require('discord.js');
 
-module.exports
+module.exports = {
+
+    data: new SlashCommandBuilder()
 
 const data = new ContextMenuCommandBuilder()
 	.setName('User Information')
