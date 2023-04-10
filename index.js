@@ -39,6 +39,11 @@ client.once(Events.ClientReady, async () => {
 });
 
 client.on(Events.InteractionCreate, async interaction => {
+	// console.log(interaction)
+	if(interaction.isMessageContextMenuCommand()){
+		console.log(interaction)
+		interaction.deferReply()
+	}
 	if (interaction.isChatInputCommand()){
 		const command = client.commands.get(interaction.commandName);
 
