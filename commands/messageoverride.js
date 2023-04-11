@@ -4,7 +4,7 @@ module.exports = {
      data: new ContextMenuCommandBuilder()
 	.setName('Override time')
 	.setType(ApplicationCommandType.Message),
-     async execute(){
-    	console.log(interaction)
+     async execute(interaction, client){
+    	interaction.reply(interaction.targetId)
      }
 }
