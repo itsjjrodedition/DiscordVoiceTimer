@@ -40,11 +40,14 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 
 Helpful if the bot disconnects, crashes, etc during call duration and users would want to reset it back:
 
-###### `/override auto` uses the timestamp from the message given from the *messageid* field and uses that as the start time of the call.
+#### `/override auto` 
+> Uses the timestamp from the message given from the *messageid* field and uses that as the start time of the call.
 
-###### `/override manual` the user of the command defines the MM/DD/YYYY HH:MM of the call.
+#### `/override manual` 
+> The user of the command defines the MM/DD/YYYY HH:MM of the call.
 
 ### Context Menu commands:
 
-`Use message timestamp` is a [Context Menu](https://kifopl.github.io/kifo-clanker/docs/guides/contextmenus) command that makes it easy to run the [/override auto](https://github.com/J-dotjs/DiscordVoiceTimer/tree/main#slash-commands) command.
+#### `Use message timestamp` 
+> [Context Menu](https://kifopl.github.io/kifo-clanker/docs/guides/contextmenus) command that makes it easy to run the [/override auto](https://github.com/J-dotjs/DiscordVoiceTimer/tree/main#override-auto) command.
 
