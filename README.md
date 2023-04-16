@@ -36,15 +36,15 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 
 ## Commands
 
-Slash commands:
+# Slash commands:
 
-```
-/override 
-```
+Helpful if the bot disconnects, crashes, etc during call duration and users would want to reset it back:
 
-Context Menu commands:
+`/override auto` uses the timestamp from the message given from the *messageid* field and uses that as the start time of the call.
 
-```
-Use message timestamp
-```
+`/override manual` the user of the command defines the MM/DD/YYYY HH:MM of the call.
+
+# Context Menu commands:
+
+`Use message timestamp` is a [Context Menu](https://kifopl.github.io/kifo-clanker/docs/guides/contextmenus) command that makes it easy to run the [/override auto]() command.
 
