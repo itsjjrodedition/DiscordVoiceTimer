@@ -36,4 +36,15 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 
 ## Commands
 
-Slash commands are supported. Simply type / in the chat box and click on the bots profile picture and see all the commands you can use!
+Slash commands:
+
+```
+/override 
+```
+
+Context Menu commands:
+
+```
+Use message timestamp
+```
+
