@@ -14,16 +14,6 @@ module.exports = {
         .setDMPermission(false)
         .addStringOption(option =>
             option
-            .setName('manual')
-            .setDescription('Are you manually overriding the call?')
-            .setRequired(true)
-            .addChoices(
-                {name: 'Yes', value: 'yes'},
-                {name: 'No', value: 'no'}
-            )
-        )
-        .addStringOption(option =>
-            option
             .setName('messageid')
             .setDescription('The embed message ID of the previous call')
             .setRequired(false)
@@ -116,7 +106,7 @@ module.exports = {
             .setRequired(false)
         ),
     async execute(interaction, client) {
-        if(interaction.options.getString('manual') == 'no') {
+        if(interaction.options.getString('messageid')) {
             const channelid = interaction.options.getString('channelid');
             const messageid = interaction.options.getString('messageid');
 
