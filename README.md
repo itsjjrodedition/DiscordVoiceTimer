@@ -19,7 +19,7 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 11. Add bot to server 
     - Goto _**OAuth2**_ tab
     - Click the dropdown box for _**Default Authorization Link**_
-    - Click the _**bot, administrator**_ checkboxes
+    - Click the _**bot**_ checkbox
     - Save your changes
     - Goto _**URL Generator**_ section of _**OAuth2**_
     - Click the _**bot, administrator**_ checkboxes once again
