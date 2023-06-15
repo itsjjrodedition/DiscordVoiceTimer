@@ -6,7 +6,7 @@ const { getVoiceConnection } = require('@discordjs/voice');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('leavecall')
-        .setDescription('Check if the bot is in a call!'),
+        .setDescription('Has the bot leave the call'),
 
     async execute(interaction) {
         
