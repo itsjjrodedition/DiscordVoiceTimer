@@ -51,4 +51,3 @@ Helpful if the bot disconnects, crashes, etc during call duration and users woul
 
 #### `Use message timestamp` 
 > [Context Menu](https://kifopl.github.io/kifo-clanker/docs/guides/contextmenus) command that makes it easy to run the [/override auto](https://github.com/J-dotjs/DiscordVoiceTimer/tree/main#override-auto) command.
-
