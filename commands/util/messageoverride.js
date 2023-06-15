@@ -8,7 +8,7 @@ var file = editJsonFile(`${process.cwd()}/call.json`, {
 
 module.exports = {
      data: new ContextMenuCommandBuilder()
-	     .setName('Set time to this ts')
+	     .setName('Use message timestamp')
 	     .setType(ApplicationCommandType.Message),
      async execute(interaction, client){
           var message = await interaction.channel.messages.fetch(interaction.targetId);

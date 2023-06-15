@@ -15,7 +15,7 @@ async function execute(client){
     var callStartTime;
     var callmsg;
     var timeOccurred = 0;
-    var file;
+    var callFile;
 
     var hours;
     var minutes;
@@ -23,7 +23,11 @@ async function execute(client){
     
     setInterval(async() => {
 
-        file = editJsonFile(`${process.cwd()}/call.json`, {
+        callFile = editJsonFile(`${process.cwd()}/call.json`, {
+            autosave: true
+        });
+
+        settingsFile = editJsonFile(`${process.cwd()}/settings.json`, {
             autosave: true
         });
         
@@ -39,7 +43,7 @@ async function execute(client){
             justCalled = true;
             if(justEnded === true){
 
-                file.empty();
+                callFile.empty();
 
                 const callEndEmbed = new EmbedBuilder()
                     .setColor(0xFF0000)
@@ -60,9 +64,9 @@ async function execute(client){
             callTime = new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             callStartTime = Date.now();
 
-            file.set("callStartTime", callStartTime)
-            file.set("callDate", callDate)
-            file.set("callTime", callTime)
+            callFile.set("callStartTime", callStartTime)
+            callFile.set("callDate", callDate)
+            callFile.set("callTime", callTime)
 
             const callStartEmbed = new EmbedBuilder()
                 .setTitle("Call started")
@@ -76,9 +80,9 @@ async function execute(client){
             wait(5000);
         } else if(call === true && justCalled === false){
 
-            callStartTime = file.get("callStartTime");
-            callDate = file.get("callDate");
-            callTime = file.get("callTime");
+            callStartTime = callFile.get("callStartTime");
+            callDate = callFile.get("callDate");
+            callTime = callFile.get("callTime");
             
             var totalSeconds = (Date.now() - callStartTime) / 1000;
             if(totalSeconds < 0) totalSeconds = 0;
