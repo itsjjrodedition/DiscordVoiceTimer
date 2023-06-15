@@ -47,6 +47,18 @@ Helpful if the bot disconnects, crashes, etc during call duration and users woul
 #### `/override manual` 
 > The user of the command defines the MM/DD/YYYY HH:MM of the call.
 
+Utility:
+#### `/joincall`
+> The bot joins the call that the user that runs the command is in
+
+#### `/leavecall`
+> Has the bot leave the call that it's in
+
+Settings:
+
+#### `/settings nickname`
+> Defines whether or not the bot should say the nickname of users in the call log
+
 ### Context Menu commands:
 
 #### `Use message timestamp` 
