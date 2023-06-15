@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require('discord.js');
 
 const call = require('../../functions/call.js');
 const editJsonFile = require("edit-json-file");
