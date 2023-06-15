@@ -19,7 +19,7 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 11. Add bot to server 
     - Goto _**OAuth2**_ tab
     - Click the dropdown box for _**Default Authorization Link**_
-    - Click the _**bot, administrator**_ checkboxes
+    - Click the _**bot**_ checkbox
     - Save your changes
     - Goto _**URL Generator**_ section of _**OAuth2**_
     - Click the _**bot, administrator**_ checkboxes once again
@@ -31,9 +31,24 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
 1. Goto [Releases](https://github.com/J-dotjs/DiscordVoiceTimer/releases) then download the version of your choice
 2. Head to the folder you downloaded the bot to
 3. Open the the [sample.env](/sample.env) file
-4. Fill out the fields, the *token* field is the token you copied from step 9 in the initial setup **REQUIRED**, the *auditlogchannel* is the ID of the channel you want call audits to be sent to, callchannel field is the ID of the channel where you want the details of the active call to go, and the *client_id* field is the application ID you copied from step 6 during the initial setup
-5. Run the [start.bat](/start.bat) file to start your bot!
+4. Fill out the fields, the *token* field is the token you copied from step 9 in the initial setup **REQUIRED**, the `auditlogchannel` is the ID of the channel you want call audits to be sent to, `callchannel` field is the ID of the channel where you want the details of the active call to go, and the `client_id` field is the application ID you copied from step 6 during the initial setup
+5. Rename and change the file type of `sample.env` to just `.env`
+6. Run the [start.bat](/start.bat) file to start your bot!
 
 ## Commands
 
-Slash commands are supported. Simply type / in the chat box and click on the bots profile picture and see all the commands you can use!
+### Slash commands:
+
+Helpful if the bot disconnects, crashes, etc during call duration and users would want to reset it back:
+
+#### `/override auto` 
+> Uses the timestamp from the message given from the *messageid* field and uses that as the start time of the call.
+
+#### `/override manual` 
+> The user of the command defines the MM/DD/YYYY HH:MM of the call.
+
+### Context Menu commands:
+
+#### `Use message timestamp` 
+> [Context Menu](https://kifopl.github.io/kifo-clanker/docs/guides/contextmenus) command that makes it easy to run the [/override auto](https://github.com/J-dotjs/DiscordVoiceTimer/tree/main#override-auto) command.
+
