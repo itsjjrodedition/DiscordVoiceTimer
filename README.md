@@ -22,7 +22,7 @@ Welcome to the **Discord Voice Timer Bot** github! Below you can read more about
     - Click the _**bot**_ checkbox
     - Save your changes
     - Goto _**URL Generator**_ section of _**OAuth2**_
-    - Click the _**bot, administrator**_ checkboxes once again
+    - Click the _**bot**_ checkbox once again
     - Copy the generated link at the bottom of the page
     - Paste link into browser and follow prompts to add to desired server (Must be an administrator or an owner of the server)
 
@@ -51,4 +51,3 @@ Helpful if the bot disconnects, crashes, etc during call duration and users woul
 
 #### `Use message timestamp` 
 > [Context Menu](https://kifopl.github.io/kifo-clanker/docs/guides/contextmenus) command that makes it easy to run the [/override auto](https://github.com/J-dotjs/DiscordVoiceTimer/tree/main#override-auto) command.
-

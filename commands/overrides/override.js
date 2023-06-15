@@ -1,6 +1,6 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require('discord.js');
 
-const call = require('../functions/call.js');
+const call = require('../../functions/call.js');
 const editJsonFile = require("edit-json-file");
 
 var file = editJsonFile(`${process.cwd()}/call.json`, {
@@ -76,15 +76,15 @@ module.exports = {
                     .setDescription('The hour of the call (1am - 12am)')
                     .setRequired(true)
                     .addChoices(
-                        {name: '1am', value: 01},
-                        {name: '2am', value: 02},
-                        {name: '3am', value: 03},
-                        {name: '4am', value: 04},
-                        {name: '5am', value: 05},
-                        {name: '6am', value: 06},
-                        {name: '7am', value: 07},
-                        {name: '8am', value: 08},
-                        {name: '9am', value: 09},
+                        {name: '1am', value: 1},
+                        {name: '2am', value: 2},
+                        {name: '3am', value: 3},
+                        {name: '4am', value: 4},
+                        {name: '5am', value: 5},
+                        {name: '6am', value: 6},
+                        {name: '7am', value: 7},
+                        {name: '8am', value: 8},
+                        {name: '9am', value: 9},
                         {name: '10am', value: 10},
                         {name: '11am', value: 11},
                         {name: '12am', value: 12},
@@ -157,6 +157,20 @@ module.exports = {
             }
 
             var date = new Date(`${month} ${day} ${year} ${hour}:${minute}`)
+            var currentDate = new Date()
+        
+            if(date > currentDate) {
+                await interaction.reply({content: `That date is in the future!`, ephemeral: true})
+                setTimeout(() => {
+                    interaction.editReply({content: `Cancelled`, ephemeral: true})
+                }, 1500)
+
+                setTimeout(() => {
+                    interaction.deleteReply()
+                }, 5000)
+
+                return
+            }
             
             var now = new Date()
             

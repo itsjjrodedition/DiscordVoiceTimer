@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const editJsonFile = require("edit-json-file");
 
-var file = editJsonFile(`${process.cwd()}/call.json`, {
+var callFile = editJsonFile(`${process.cwd()}/call.json`, {
     autosave: true
 });
 
@@ -20,17 +20,22 @@ const client = new Client( { intents: [GatewayIntentBits.Guilds, GatewayIntentBi
 const rcall = require('./functions/call.js');
 
 client.commands = new Collection();
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const foldersPath = path.join(__dirname, 'commands');
+const commandFolders = fs.readdirSync(foldersPath);
 
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	client.commands.set(command.data.name, command);
+for (const folder of commandFolders) {
+	const commandsPath = path.join(foldersPath, folder);
+	const commandFiles = fs.readdirSync(commandsPath).filter(callFile => callFile.endsWith('.js'));
+
+	for (const callFile of commandFiles) {
+		const callFilePath = path.join(commandsPath, callFile);
+		const command = require(callFilePath);
+		client.commands.set(command.data.name, command);
+	}
 }
 
 client.once(Events.ClientReady, async () => {
-	file.empty();
+	callFile.empty();
 
 	console.log(`Logged in as ${client.user.tag}`);
 
@@ -58,19 +63,27 @@ client.on(Events.InteractionCreate, async interaction => {
 			await command.execute(interaction, client);
 		} catch (error) {
 			console.error(error);
-			await interaction.reply({ content: 'There was an error while executing this command...', ephemeral: true });
+			if(interaction.replied){
+				await interaction.editReply({ content: 'There was an error while executing this command...', ephemeral: true });
+			} else {
+				await interaction.reply({ content: 'There was an error while executing this command...', ephemeral: true });
+			}
 		}
 	}
 });
 
 client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
+	var settingsFile = editJsonFile(`${process.cwd()}/settings.json`, {
+		autosave: true
+	});
+
 	var username = newState.member.user.username;
 	var nickname = newState.member.nickname;
 
 	var message = ``;
 
-	if(nickname != null){
+	if(nickname != null && nickname != undefined && settingsFile.get("nickname") == true){
 		message = `${nickname}(${username})`;
 	} else {
 		message = `${username}`;
