@@ -157,6 +157,20 @@ module.exports = {
             }
 
             var date = new Date(`${month} ${day} ${year} ${hour}:${minute}`)
+            var currentDate = new Date()
+        
+            if(date > currentDate) {
+                await interaction.reply({content: `That date is in the future!`, ephemeral: true})
+                setTimeout(() => {
+                    interaction.editReply({content: `Cancelled`, ephemeral: true})
+                }, 1500)
+
+                setTimeout(() => {
+                    interaction.deleteReply()
+                }, 5000)
+
+                return
+            }
             
             var now = new Date()
             
