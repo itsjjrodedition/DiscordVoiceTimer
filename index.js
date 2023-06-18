@@ -79,17 +79,20 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	});
 
 	var username = newState.member.user.username;
-	var nickname = newState.member.nickname;
+	var nickname = newState.member.nickname || newState.member.displayName;
 
 	var message = ``;
 
-	if(nickname != null && nickname != undefined && settingsFile.get("nickname") == true){
-		message = `${nickname}(${username})`;
-	} else {
+	if(settingsFile.get("nickname") == true){
+		if(nickname == null){
+			nickname = username;
+		}
+		message = `${nickname}`;
+	} else if(settingsFile.get("nickname") == false){
 		message = `${username}`;
+	}else {
+		message = `${nickname}(${username})`;
 	}
-
-	console.log(newState.selfVideo)
 
 	if(!config.logchannel) return;
 	if (oldState.channelId === newState.channelId){
