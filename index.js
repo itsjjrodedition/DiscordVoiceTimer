@@ -79,14 +79,19 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	});
 
 	var username = newState.member.user.username;
-	var nickname = newState.member.nickname;
+	var nickname = newState.member.nickname || newState.member.displayName;
 
 	var message = ``;
 
-	if(nickname != null && nickname != undefined && settingsFile.get("nickname") == true){
-		message = `${nickname}(${username})`;
-	} else {
+	if(settingsFile.get("nickname") == true){
+		if(nickname == null){
+			nickname = username;
+		}
+		message = `${nickname}`;
+	} else if(settingsFile.get("nickname") == false){
 		message = `${username}`;
+	}else {
+		message = `${nickname}(${username})`;
 	}
 
 	if(!config.logchannel) return;
@@ -111,7 +116,41 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 		// User started streaming
 		client.channels.cache.get(config.logchannel).send(`${message} started streaming`)
 	} 
-
+	if( oldState.selfVideo === false && newState.selfVideo === true){
+		// User started video
+		client.channels.cache.get(config.logchannel).send(`${message} turned their camera on`)
+	} else if( oldState.selfVideo === true && newState.selfVideo === false){
+		// User stopped video
+		client.channels.cache.get(config.logchannel).send(`${message} turned their camera off`)
+	}
+	if( oldState.selfMute === false && newState.selfMute === true){
+		// User muted
+		client.channels.cache.get(config.logchannel).send(`${message} muted themself`)
+	} else if( oldState.selfMute === true && newState.selfMute === false){
+		// User unmuted
+		client.channels.cache.get(config.logchannel).send(`${message} unmuted themself`)
+	}
+	if( oldState.selfDeaf === false && newState.selfDeaf === true){
+		// User deafened
+		client.channels.cache.get(config.logchannel).send(`${message} deafened themself`)
+	} else if( oldState.selfDeaf === true && newState.selfDeaf === false){
+		// User undeafened
+		client.channels.cache.get(config.logchannel).send(`${message} undeafened themself`)
+	}
+	if( oldState.serverDeaf === false && newState.serverDeaf === true){
+		// User was server deafened
+		client.channels.cache.get(config.logchannel).send(`${message} was deafened by a moderator`)
+	} else if( oldState.serverDeaf === true && newState.serverDeaf === false){
+		// User was server undeafened
+		client.channels.cache.get(config.logchannel).send(`${message} was undeafened by a moderator`)
+	}
+	if( oldState.serverMute === false && newState.serverMute === true){
+		// User was server muted
+		client.channels.cache.get(config.logchannel).send(`${message} was muted by a moderator`)
+	} else if( oldState.serverMute === true && newState.serverMute === false){
+		// User was server unmuted
+		client.channels.cache.get(config.logchannel).send(`${message} was unmuted by a moderator`)
+	}
 });
 
 process.on('unhandledRejection', error => {
