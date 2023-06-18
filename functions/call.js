@@ -67,10 +67,6 @@ async function execute(client){
             }
 		}
         if(call === true && justCalled === true){
-            for(const guild of guilds){
-                const cached = client.guilds.cache.get(guild)
-                cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
-            }
 
             callDate = new Date().toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             callTime = new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
@@ -91,6 +87,11 @@ async function execute(client){
 
             wait(5000);
         } else if(call === true && justCalled === false){
+
+            for(const guild of guilds){
+                const cached = client.guilds.cache.get(guild)
+                cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+            }
 
             callStartTime = callFile.get("callStartTime");
             callDate = callFile.get("callDate");
