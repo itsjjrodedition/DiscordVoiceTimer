@@ -89,6 +89,8 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 		message = `${username}`;
 	}
 
+	console.log(newState.selfVideo)
+
 	if(!config.logchannel) return;
 	if (oldState.channelId === newState.channelId){
 		// Still in the same channel
@@ -111,6 +113,13 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 		// User started streaming
 		client.channels.cache.get(config.logchannel).send(`${message} started streaming`)
 	} 
+	if( oldState.selfVideo === false && newState.selfVideo === true){
+		// User started video
+		client.channels.cache.get(config.logchannel).send(`${message} turned their camera on`)
+	} else if( oldState.selfVideo === true && newState.selfVideo === false){
+		// User stopped video
+		client.channels.cache.get(config.logchannel).send(`${message} turned their camera off`)
+	}
 
 });
 
