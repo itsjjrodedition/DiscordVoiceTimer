@@ -21,6 +21,8 @@ async function execute(client){
     var minutes;
     var seconds;
     
+    const guilds = client.guilds.cache.map(guild => guild.id)
+
     setInterval(async() => {
 
         callFile = editJsonFile(`${process.cwd()}/call.json`, {
@@ -38,6 +40,11 @@ async function execute(client){
 			call = true;
             justEnded = true;
 		} else {
+            for(const guild of guilds){
+                const cached = client.guilds.cache.get(guild)
+                cached.members.cache.get(client.user.id).setNickname('☎️')
+            }
+
 			call = false;
 			client.user.setPresence({ activities: [{ name: ` `, type: ActivityType.Custom }], status: 'dnd', });
             justCalled = true;
@@ -60,6 +67,11 @@ async function execute(client){
             }
 		}
         if(call === true && justCalled === true){
+            for(const guild of guilds){
+                const cached = client.guilds.cache.get(guild)
+                cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+            }
+
             callDate = new Date().toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             callTime = new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             callStartTime = Date.now();
