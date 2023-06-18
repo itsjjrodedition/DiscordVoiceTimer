@@ -40,15 +40,16 @@ async function execute(client){
 			call = true;
             justEnded = true;
 		} else {
-            for(const guild of guilds){
-                const cached = client.guilds.cache.get(guild)
-                cached.members.cache.get(client.user.id).setNickname('☎️')
-            }
 
 			call = false;
 			client.user.setPresence({ activities: [{ name: ` `, type: ActivityType.Custom }], status: 'dnd', });
             justCalled = true;
             if(justEnded === true){
+
+                for(const guild of guilds){
+                    const cached = client.guilds.cache.get(guild)
+                    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+                }
 
                 callFile.empty();
 
