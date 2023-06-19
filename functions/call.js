@@ -48,7 +48,7 @@ async function execute(client){
 
                 for(const guild of guilds){
                     const cached = client.guilds.cache.get(guild)
-                    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+                    cached.members.cache.get(client.user.id).setNickname(`☎️`)
                 }
 
                 callFile.empty();
