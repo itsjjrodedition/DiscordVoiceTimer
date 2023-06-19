@@ -23,6 +23,10 @@ async function execute(client){
     
     const guilds = client.guilds.cache.map(guild => guild.id)
 
+    for(const guild of guilds){
+	    const cached = client.guilds.cache.get(guild)
+            cached.members.cache.get(client.user.id).setNickname(`☎️`)
+    }
     setInterval(async() => {
 
         callFile = editJsonFile(`${process.cwd()}/call.json`, {
