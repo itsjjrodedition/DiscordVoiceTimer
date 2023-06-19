@@ -73,6 +73,7 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
+	var count = 0;
 
 	const voiceChannels = client.channels.cache.filter(c => c.type === ChannelType.GuildVoice);
 	for(const[id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
