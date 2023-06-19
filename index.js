@@ -74,6 +74,9 @@ client.on(Events.InteractionCreate, async interaction => {
 
 client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
+	const voiceChannels = client.channels.cache.filter(c => c.type === ChannelType.GuildVoice);
+	for(const[id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
+
 	const guilds = client.guilds.cache.map(guild => guild.id)
 
 	var settingsFile = editJsonFile(`${process.cwd()}/settings.json`, {
