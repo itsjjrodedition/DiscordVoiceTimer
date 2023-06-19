@@ -94,11 +94,6 @@ async function execute(client){
             wait(5000);
         } else if(call === true && justCalled === false){
 
-            for(const guild of guilds){
-                const cached = client.guilds.cache.get(guild)
-                cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
-            }
-
             callStartTime = callFile.get("callStartTime");
             callDate = callFile.get("callDate");
             callTime = callFile.get("callTime");

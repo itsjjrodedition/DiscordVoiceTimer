@@ -74,6 +74,8 @@ client.on(Events.InteractionCreate, async interaction => {
 
 client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
+	const guilds = client.guilds.cache.map(guild => guild.id)
+
 	var settingsFile = editJsonFile(`${process.cwd()}/settings.json`, {
 		autosave: true
 	});
@@ -101,10 +103,20 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	else if (oldState.channelId === null && newState.channelId !== null) {
 		// User joined a voice channel
 		client.channels.cache.get(config.logchannel).send(`${message} joined <#${newState.channel.id}>`)
+		
+    	for(const guild of guilds){
+    	    const cached = client.guilds.cache.get(guild)
+    	    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+    	}
 
 	} else if (newState.channelId === null) {
 		// User left a voice channel
 		client.channels.cache.get(config.logchannel).send(`${message} left <#${oldState.channel.id}>`)
+
+		for(const guild of guilds){
+    	    const cached = client.guilds.cache.get(guild)
+    	    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+    	}
 	} else {
 		// User switched voice channels
 		client.channels.cache.get(config.logchannel).send(`${message} switched from <#${oldState.channel.id}> to <#${newState.channel.id}>`)
