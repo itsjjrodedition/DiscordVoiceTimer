@@ -64,7 +64,7 @@ Settings:
 #### `Use message timestamp` 
 > [Context Menu](https://kifopl.github.io/kifo-clanker/docs/guides/contextmenus) command that makes it easy to run the [/override auto](https://github.com/J-dotjs/DiscordVoiceTimer/tree/main#override-auto) command.
 
-### TODO
+## TODO
 - [x] Add the ability to turn off putting the nickname in call log channels
 - [ ] Add the ability to allow users to give permission for the bot to message them in the call log
 - [x] Have the bot join and leave the call
@@ -72,6 +72,6 @@ Settings:
 - [x] Remove ability to set the call to beyond current date
 - [ ] Check for the date field of the manual command to not be above or below the range of the month selected (ex. if the `month` is April the date cannot be out of the range 1-30, if the `month` is February it cannot be out of the range 1-28 / 1-29 if its a leap year.)
 
-### Long term TODOs
+## Long term TODOs
 - [ ] Add an .exe file for easy usage instead of batch file
 - [ ] Support for back end running (remove command prompt box)
