@@ -108,12 +108,12 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	}
 	else if (oldState.channelId === null && newState.channelId !== null) {
 		// User joined a voice channel
-		client.channels.cache.get(config.logchannel).send(`${message} joined <#${newState.channel.id}>`)
-		
     	for(const guild of guilds){
     	    const cached = client.guilds.cache.get(guild)
     	    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
     	}
+
+		return client.channels.cache.get(config.logchannel).send(`${message} joined <#${newState.channel.id}>`)
 
 	} else if (newState.channelId === null) {
 		// User left a voice channel
