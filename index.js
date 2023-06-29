@@ -78,8 +78,6 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	const voiceChannels = client.channels.cache.filter(c => c.type === ChannelType.GuildVoice);
 	for(const[id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
 
-        console.log(count)
-
 	const guilds = client.guilds.cache.map(guild => guild.id)
 
 	var settingsFile = editJsonFile(`${process.cwd()}/settings.json`, {
@@ -87,9 +85,10 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	});
 
 	var username = newState.member.user.username;
-	var nickname = newState.member.nickname || newState.member.displayName;
+	var nickname = newState.member.displayName || newState.member.nickname;
 
 	var message = ``;
+
 
 	if(settingsFile.get("nickname") == true){
 		if(nickname == null){
