@@ -8,12 +8,6 @@ module.exports = {
         .setDescription('Make the bot join the call! (no use yet)'),
 
     async execute(interaction) {
-        const duration = interaction.options.getString('duration');
-
-        if(duration == null) {
-            interaction.reply({content: `You must specify a duration!`, ephemeral: true});
-            return;
-        }
 
         const voiceChannel = interaction.member.voice.channel;
         if (!voiceChannel) {
