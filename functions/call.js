@@ -29,7 +29,7 @@ async function execute(client){
     }
     setInterval(async() => {
 
-        callFile = editJsonFile(`${process.cwd()}/call.json`, {
+        callFile = editJsonFile(`${process.cwd()}/data/call.json`, {
             autosave: true
         });
 

@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const editJsonFile = require("edit-json-file");
 
-var callFile = editJsonFile(`${process.cwd()}/call.json`, {
+var callFile = editJsonFile(`${process.cwd()}/data/call.json`, {
     autosave: true
 });
 
@@ -117,11 +117,11 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	} else if (newState.channelId === null) {
 		// User left a voice channel
 		client.channels.cache.get(config.logchannel).send(`${message} left <#${oldState.channel.id}>`)
-                if(count > 1){
+        if(count >= 1){
 		for(const guild of guilds){
-    	            const cached = client.guilds.cache.get(guild)
-    	            cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
-    	        }
+    	    const cached = client.guilds.cache.get(guild)
+    	    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+    	}
 		}
 	} else {
 		// User switched voice channels
