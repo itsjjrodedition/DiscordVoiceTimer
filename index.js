@@ -85,7 +85,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	});
 
 	var username = newState.member.user.username;
-	var nickname = newState.member.displayName || newState.member.nickname;
+	var nickname = newState.member.nickname || newState.member.displayName;
 
 	var message = ``;
 
