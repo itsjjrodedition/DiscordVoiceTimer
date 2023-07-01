@@ -118,18 +118,10 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 		// User left a voice channel
 		client.channels.cache.get(config.logchannel).send(`${message} left <#${oldState.channel.id}>`)
         if(count >= 1){
-<<<<<<< HEAD
-		for(const guild of guilds){
-    	    const cached = client.guilds.cache.get(guild)
-    	    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
-    	}
-=======
-			for(const guild of guilds){
-    		   	const cached = client.guilds.cache.get(guild)
-    		    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
-    		}
->>>>>>> main
-		}
+	    for(const guild of guilds){
+    	    	const cached = client.guilds.cache.get(guild)
+    	    	cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+    	    }
 	} else {
 		// User switched voice channels
 		client.channels.cache.get(config.logchannel).send(`${message} switched from <#${oldState.channel.id}> to <#${newState.channel.id}>`)
