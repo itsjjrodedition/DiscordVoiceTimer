@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const editJsonFile = require("edit-json-file");
 
-var callFile = editJsonFile(`${process.cwd()}/call.json`, {
+var callFile = editJsonFile(`${process.cwd()}/data/call.json`, {
     autosave: true
 });
 
@@ -78,8 +78,6 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	const voiceChannels = client.channels.cache.filter(c => c.type === ChannelType.GuildVoice);
 	for(const[id, voiceChannel] of voiceChannels) count += voiceChannel.members.size;
 
-        console.log(count)
-
 	const guilds = client.guilds.cache.map(guild => guild.id)
 
 	var settingsFile = editJsonFile(`${process.cwd()}/settings.json`, {
@@ -87,9 +85,10 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	});
 
 	var username = newState.member.user.username;
-	var nickname = newState.member.nickname || newState.member.displayName;
+	var nickname = newState.member.displayName || newState.member.nickname;
 
 	var message = ``;
+
 
 	if(settingsFile.get("nickname") == true){
 		if(nickname == null){
@@ -119,10 +118,17 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 		// User left a voice channel
 		client.channels.cache.get(config.logchannel).send(`${message} left <#${oldState.channel.id}>`)
         if(count >= 1){
+<<<<<<< HEAD
+		for(const guild of guilds){
+    	    const cached = client.guilds.cache.get(guild)
+    	    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
+    	}
+=======
 			for(const guild of guilds){
     		   	const cached = client.guilds.cache.get(guild)
     		    cached.members.cache.get(client.user.id).setNickname(`📞 ${count} in call`)
     		}
+>>>>>>> main
 		}
 	} else {
 		// User switched voice channels

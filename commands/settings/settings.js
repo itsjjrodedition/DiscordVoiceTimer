@@ -14,7 +14,7 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName('nickname')
-                .setDescription('Toggle the nickname feature!')
+                .setDescription('Toggle the nickname feature! (if user has no nickname, it will use their display name)')
                 .addBooleanOption(option =>
                     option
                     .setName('toggle')

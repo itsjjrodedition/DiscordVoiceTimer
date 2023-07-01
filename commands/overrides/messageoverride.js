@@ -2,7 +2,7 @@ const { ContextMenuCommandBuilder, ApplicationCommandType } = require('discord.j
 
 const editJsonFile = require("edit-json-file");
 
-var file = editJsonFile(`${process.cwd()}/call.json`, {
+var file = editJsonFile(`${process.cwd()}/data/call.json`, {
     autosave: true
 });
 
