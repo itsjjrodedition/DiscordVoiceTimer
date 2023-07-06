@@ -87,7 +87,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	var username = newState.member.user.username;
 	var nickname = newState.member.nickname || newState.member.displayName;
 
-	var message = ``;
+	var message = `[<t:${Math.round(Date.now()/1000)}:T>] `;
 
 
 	if(settingsFile.get("nickname") == true){
@@ -98,7 +98,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 	} else if(settingsFile.get("nickname") == false){
 		message = `${username}`;
 	}else {
-		message = `${nickname}(${username})`;
+		message += `${nickname}(${username})`;
 	}
 
 	if(!config.logchannel) return;
