@@ -39,6 +39,8 @@ client.once(Events.ClientReady, async () => {
 
 	console.log(`Logged in as ${client.user.tag}`);
 
+	console.log(client.application)
+
 	rcall.execute(client);
 
 });
@@ -80,7 +82,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
 	const guilds = client.guilds.cache.map(guild => guild.id)
 
-	var settingsFile = editJsonFile(`${process.cwd()}/settings.json`, {
+	var settingsFile = editJsonFile(`${process.cwd()}/data/settings.json`, {
 		autosave: true
 	});
 
@@ -94,9 +96,9 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 		if(nickname == null){
 			nickname = username;
 		}
-		message = `${nickname}`;
+		message += `${nickname}`;
 	} else if(settingsFile.get("nickname") == false){
-		message = `${username}`;
+		message += `${username}`;
 	}else {
 		message += `${nickname}(${username})`;
 	}
