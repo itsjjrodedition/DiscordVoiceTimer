@@ -39,8 +39,6 @@ client.once(Events.ClientReady, async () => {
 
 	console.log(`Logged in as ${client.user.tag}`);
 
-	console.log(client.application)
-
 	rcall.execute(client);
 
 });
