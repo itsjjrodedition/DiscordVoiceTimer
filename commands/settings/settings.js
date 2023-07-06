@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 
 const editJsonFile = require("edit-json-file");
 
-var file = editJsonFile(`${process.cwd()}/settings.json`, {
+var file = editJsonFile(`${process.cwd()}/data/settings.json`, {
     autosave: true
 });
 
