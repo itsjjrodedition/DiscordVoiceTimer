@@ -125,14 +125,14 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 		}
 	} else {
 		// User switched voice channels
-		client.channels.cache.get(config.logchannel).send(`${message} switched from <#${oldState.channel.id}> to <#${newState.channel.id}>`)
+		client.channels.cache.get(config.logchannel).send(`${message} switched channels (<#${oldState.channel.id}> to <#${newState.channel.id}>)`)
 	}
 	if( oldState.streaming === true && newState.streaming === false && oldState.channelId != null){
 		// User stopped streaming
-		client.channels.cache.get(config.logchannel).send(`${message} stopped streaming`)
+		client.channels.cache.get(config.logchannel).send(`${message} stopped sharing their screen`)
 	} else if( oldState.streaming === false && newState.streaming === true){
 		// User started streaming
-		client.channels.cache.get(config.logchannel).send(`${message} started streaming`)
+		client.channels.cache.get(config.logchannel).send(`${message} started sharing their screen`)
 	} 
 	if( oldState.selfVideo === false && newState.selfVideo === true){
 		// User started video
