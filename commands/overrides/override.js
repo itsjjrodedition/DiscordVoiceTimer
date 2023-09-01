@@ -110,9 +110,6 @@ module.exports = {
                 )
             ),
     async execute(interaction, client) {
-        if(file.get("callStartTime") === null) {
-            return interaction.reply({content: `There is no call active.`, ephemeral: true});
-        }
 
         if (interaction.options.getSubcommand() === 'auto') {
             const channelid = interaction.options.getString('channelid');

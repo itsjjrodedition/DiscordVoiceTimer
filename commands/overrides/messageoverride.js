@@ -11,15 +11,11 @@ module.exports = {
 	     .setName('Use message timestamp')
 	     .setType(ApplicationCommandType.Message),
      async execute(interaction, client){
-          if(file.get("callStartTime") != null){    
-               var message = await interaction.channel.messages.fetch(interaction.targetId);
-               console.log(message.embeds)
-               file.set("callStartTime", Date.parse(message.createdAt));
-               file.set("callDate", new Date(message.createdAt).toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
-               file.set("callTime", new Date(message.createdAt).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
-               await interaction.reply({content: `The call's time has been overriden to \`${message.createdAt}\``, ephemeral: true});
-          } else {
-               await interaction.reply({content: `There is no call active.`, ephemeral: true});
-          }
+          var message = await interaction.channel.messages.fetch(interaction.targetId);
+          console.log(message.embeds)
+          file.set("callStartTime", Date.parse(message.createdAt));
+          file.set("callDate", new Date(message.createdAt).toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
+          file.set("callTime", new Date(message.createdAt).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
+          await interaction.reply({content: `The call's time has been overriden to \`${message.createdAt}\``, ephemeral: true});
      }
 }
