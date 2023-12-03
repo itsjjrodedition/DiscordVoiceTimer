@@ -89,7 +89,6 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
 	var message = `[<t:${Math.round(Date.now()/1000)}:T>] `;
 
-
 	if(settingsFile.get("nickname") == true){
 		if(nickname == null){
 			nickname = username;
@@ -125,7 +124,15 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 		}
 	} else {
 		// User switched voice channels
-		client.channels.cache.get(config.logchannel).send(`${message} switched channels (<#${oldState.channel.id}> to <#${newState.channel.id}>)`)
+		if( oldState.channelId === oldState.channel.guild.afkChannelId && oldState.channelId !== null && oldState.channel.guild.afkChannelId !== null && newState.channelId !== newState.channel.guild.afkChannelId){
+			// User went AFK
+			client.channels.cache.get(config.logchannel).send(`${message} is no longer AFK (<#${oldState.channel.id}> to <#${newState.channel.id}>)`)
+		} else if( oldState.channelId !== oldState.channel.guild.afkChannelId && oldState.channelId !== null && oldState.channel.guild.afkChannelId !== null && newState.channelId === newState.channel.guild.afkChannelId){
+			// User went back from AFK
+			client.channels.cache.get(config.logchannel).send(`${message} is now AFK (<#${oldState.channel.id}> to <#${newState.channel.id}>)`)
+		} else {
+			client.channels.cache.get(config.logchannel).send(`${message} switched channels (<#${oldState.channel.id}> to <#${newState.channel.id}>)`)
+		}
 	}
 	if( oldState.streaming === true && newState.streaming === false && oldState.channelId != null){
 		// User stopped streaming

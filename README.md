@@ -68,7 +68,7 @@ Settings:
 - [x] Add the ability to turn off putting the nickname in call log channels
 - [x] Have the bot join and leave the call
 - [x] Remove ability to set the call to beyond current date
-- [ ] Change the way bot is configured to be more user friendly [NEXT UPDATE]
+- [ ] Change the way bot is configured to be more user friendly [NEXT MAJOR UPDATE]
 - [ ] Add the ability to allow users to give permission for the bot to mention them in the call log
 - [ ] Add the functionality to have the bot stay in the call that it's in for a certain amount of time
 - [ ] Check for the date field of the manual command to not be above or below the range of the month selected (ex. if the `month` is April the date cannot be out of the range 1-30, if the `month` is February it cannot be out of the range 1-28 / 1-29 if its a leap year.)
