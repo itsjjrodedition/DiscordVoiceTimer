@@ -5,6 +5,8 @@ const editJsonFile = require("edit-json-file");
 
 const wait = require('util').promisify(setTimeout);
 
+const timeFunctions = require('qol-date-functions');
+
 async function execute(client){
 
     var call = false;
@@ -60,7 +62,7 @@ async function execute(client){
                 const callEndEmbed = new EmbedBuilder()
                     .setColor(0xFF0000)
                     .setTitle("Call ended")
-                    .setDescription(`Call ended at ${new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")} on ${new Date().toLocaleDateString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")}`)
+                    .setDescription(`Call took place <t:${timeFunctions.toUnix(new Date(callStartTime))}:F> - <t:${timeFunctions.toUnix(new Date())}:F>`)
                     .addFields(
                         { name: 'Call lasted', value: `${hours}:${minutes}:${seconds}`, inline: true },
                     )
@@ -88,7 +90,7 @@ async function execute(client){
 
             const callStartEmbed = new EmbedBuilder()
                 .setTitle("Call started")
-                .setDescription(`Call started at ${callTime} on ${callDate}`)
+                .setDescription(`Call started at <t:${timeFunctions.toUnix(new Date(callStartTime))}:F>`)
                 .setColor(0x00FF00)
                 .setTimestamp()
             callmsg = await client.channels.cache.get(process.env.callchannel).send({ embeds: [callStartEmbed] });
@@ -116,10 +118,11 @@ async function execute(client){
                 .setTitle("Call ongoing")
                 .setColor(0x00FF00)
                 .setTimestamp()
+                .setDescription(`Updates <t:${timeFunctions.toUnix(timeFunctions.addSeconds(new Date(), 10))}:R>`)
                 .addFields(
                     { name: 'Time elapsed', value: `${hours}:${minutes}:${seconds}`, inline: true },
                     { name: '-------------', value: 'hh:mm:ss', inline: true },
-                    { name: 'Call started at', value: `${callTime} on ${callDate}`, inline: true },
+                    { name: 'Call started at', value: `<t:${timeFunctions.toUnix(new Date(callStartTime))}:F>`, inline: true },
                 )
                 .setFooter({ text:  "Updates every 10 seconds", iconURL: client.user.avatarURL()})
                 

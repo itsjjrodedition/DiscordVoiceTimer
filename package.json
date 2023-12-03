@@ -22,6 +22,7 @@
     "discord.js": "^14.13.0",
     "dotenv": "^16.0.3",
     "edit-json-file": "^1.7.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "qol-date-functions": "^0.0.3"
   }
 }
