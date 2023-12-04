@@ -113,7 +113,7 @@ async function execute(client){
             minutes = Math.floor(totalMinutes % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
             seconds = Math.floor(totalSeconds % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 
-            client.user.setPresence({ activities: [{ name: `${hours}:${minutes}:${seconds}`, type: ActivityType.Playing }], status: 'online', });
+            client.user.setPresence({ activities: [{ name: `${hours}:${minutes}:${seconds}`, type: ActivityType.Custom }], status: 'online', });
             const callOngoingEmbed = new EmbedBuilder()
                 .setTitle("Call ongoing")
                 .setColor(0x00FF00)
