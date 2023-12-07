@@ -4,8 +4,8 @@
   "description": "Welcome to the **Discord Voice Timer Bot** github! Below you can read more about the bot, like what it does, and how to set it up!",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --ignore 'data/*.json' --exec npm run run",
-    "run": "node deploy-commands.js && node index.js"
+    "run": "nodemon --ignore 'data/*.json' --exec npm run run",
+    "start": "node deploy-commands.js && node index.js"
   },
   "repository": {
     "type": "git",

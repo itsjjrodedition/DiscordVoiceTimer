@@ -1,6 +1,9 @@
 FROM docker.io/node:latest
 
-
+ENV auditlogchannel=1078033482162372628
+ENV callchannel=841700183220813904
+ENV clientId=836801220692934706
+ENV token=ODM2ODAxMjIwNjkyOTM0NzA2.GXbUl8._ZnQIKjBAC0xZoWY8Q6u5czpczNfdZ1RnTylp0
 
 # Create the bot's directory
 
